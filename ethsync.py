@@ -13,24 +13,23 @@ import logging
 #from systemd.journal import JournalHandler
 
 # Get postgre database name
-if len(sys.argv) < 2:
-    print('Add postgre database name as an argument')
-    exit()
 
-dbname = sys.argv[1]
+
+dbname = 'etherium'
 
 # Connect to geth node
 #web3 = Web3(Web3.IPCProvider("/home/geth/.ethereum/geth.ipc"))
 
 # Or connect to openethereum node
-web3 = Web3(Web3.IPCProvider("/home/parity/.local/share/openethereum/jsonrpc.ipc"))
 
+#web3 = Web3(Web3.IPCProvider("\\\\.\\pipe\\geth.ipc"))
+web3 = Web3(Web3.IPCProvider("https://mainnet.infura.io/v3/6a528c17b68a40b5bc84190aabb81c19"))
 # Start logger
 logger = logging.getLogger("EthIndexerLog")
 logger.setLevel(logging.INFO)
 
 # File logger
-lfh = logging.FileHandler("/var/log/ethindexer.log")
+lfh = logging.FileHandler("C:/dev/code/ETH-transactions-storage/ethindexer.log")
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 lfh.setFormatter(formatter)
 logger.addHandler(lfh)
